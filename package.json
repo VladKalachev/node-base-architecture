@@ -1,8 +1,8 @@
 {
   "name": "base-architecture",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API для учебного проекта NodeJS",
+  "main": "",
   "type": "commonjs",
   "scripts": {
     "start": "node ./dist/main.js",
@@ -12,7 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "tslog": "^4.9.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.21"
