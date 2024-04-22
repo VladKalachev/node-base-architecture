@@ -16,7 +16,7 @@ export class App {
   }
 
   useRoutes(): void {
-		this.app.use('/users', userRouter);
+    this.app.use('/users', userRouter);
 	}
 
   public async init(): Promise<void>  {
