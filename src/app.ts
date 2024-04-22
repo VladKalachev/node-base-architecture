@@ -1,5 +1,5 @@
 import express, { Express } from 'express';
-
+import { json } from 'body-parser';
 import { Server } from 'http';
 import { UserController } from './users/users.controller';
 import { ExeptionFilter } from './errors/exeption.filter';
@@ -23,6 +23,12 @@ export class App {
 		this.port = 8000;
 	}
 
+	useMiddleware(): void {
+		this.app.use(json());
+		// const authMiddleware = new AuthMiddleware(this.configService.get('SECRET'));
+		// this.app.use(authMiddleware.execute.bind(authMiddleware));
+	}
+
 	useRoutes(): void {
 		this.app.use('/users', this.userController.router);
 	}
@@ -32,6 +38,7 @@ export class App {
 	}
 
 	public async init(): Promise<void> {
+		this.useMiddleware();
 		this.useRoutes();
 		this.useExeptionFilters();
 		this.server = this.app.listen(this.port);

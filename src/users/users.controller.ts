@@ -5,6 +5,8 @@ import { IUserController } from './users.controller.interface';
 import { inject, injectable } from 'inversify';
 import { ILogger } from '../logger/logger.interface';
 import { TYPES } from '../types';
+import { UserLoginDto } from './dto/user-login.dto';
+import { UserRegisterDto } from './dto/user-register.dto';
 
 @injectable()
 export class UserController extends BaseController implements IUserController {
@@ -17,15 +19,15 @@ export class UserController extends BaseController implements IUserController {
 		]);
 	}
 
-	login(req: Request, res: Response, next: NextFunction) {
+	login(req: Request<{}, {}, UserLoginDto>, res: Response, next: NextFunction): void {
 		this.ok(res, 'login');
 	}
 
-	register(req: Request, res: Response, next: NextFunction) {
+	register(req: Request<{}, {}, UserRegisterDto>, res: Response, next: NextFunction): void {
 		this.ok(res, 'register');
 	}
 
-	info(req: Request, res: Response, next: NextFunction) {
+	info(req: Request, res: Response, next: NextFunction): void {
 		this.ok(res, 'info');
 	}
 }
