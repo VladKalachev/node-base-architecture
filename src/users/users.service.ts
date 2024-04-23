@@ -6,12 +6,16 @@ import { IUserService } from './users.service.interface';
 import 'reflect-metadata';
 import { TYPES } from '../types';
 import { ILogger } from '../logger/logger.interface';
+import { IConfigService } from '../config/config.service.interface';
 
 @injectable()
 export class UserService implements IUserService {
+	constructor(@inject(TYPES.ConfigService) private configService: IConfigService) {}
+
 	async createUser({ email, name, password }: UserRegisterDto): Promise<User | null> {
 		const newUser = new User(email, name);
-		await newUser.setPassword(password, 10);
+		const salt = this.configService.get('SALT');
+		await newUser.setPassword(password, Number(salt));
 		return null;
 	}
 
